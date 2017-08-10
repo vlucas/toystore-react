@@ -1,6 +1,6 @@
 {
   "name": "toystore-react",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "React bindings for toystore (central store of state)",
   "main": "src/index.js",
   "scripts": {
