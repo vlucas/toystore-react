@@ -5,7 +5,7 @@ const React = require('react');
 /**
  * Subscribes a component to the store to re-render when specified store keys update
  */
-function subscribe(Component, store, mapping = null) {
+function subscribe(store, Component, mapping = null) {
   if (mapping === null) {
     mapping = store.getAll();
   }

@@ -31,7 +31,7 @@ describe('subscribe', () => {
   beforeEach(() => {
     renderCount = 0;
     store = toystore.create(storeDefaults);
-    subscribe = (Component, mapping) => toystoreReact.subscribe(Component, store, mapping);
+    subscribe = (Component, mapping) => toystoreReact.subscribe(store, Component, mapping);
   });
 
   it('should map store keys to local props on initial render', () => {
