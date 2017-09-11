@@ -23,8 +23,19 @@ function subscribe(store, Component, mapping = null) {
 
   let isNull = mapping === null;
   let isArray = mapping instanceof Array;
-  let propKeys = isArray ? mapping : (isNull ? Object.keys(defaultMapping) : Object.keys(mapping));
-  let storeKeys = isArray ? mapping : (isNull ? propKeys : propKeys.map(k => mapping[k]));
+
+  function getPropKeys() {
+    let propKeys = isArray ? mapping : (isNull ? Object.keys(defaultMapping) : Object.keys(mapping));
+
+    return propKeys;
+  }
+
+  function getStoreKeys() {
+    let propKeys = getPropKeys();
+    let storeKeys = isArray ? mapping : (isNull ? propKeys : propKeys.map(k => mapping[k]));
+
+    return storeKeys;
+  }
 
   function getRootKeyIfNested(key) {
     let dotPosition = key.indexOf('.');
@@ -37,6 +48,9 @@ function subscribe(store, Component, mapping = null) {
   }
 
   function getMappingForLocalPropNames() {
+    let propKeys = getPropKeys();
+    let storeKeys = getStoreKeys();
+
     let mappedPropKeys = isArray ? propKeys.map(getRootKeyIfNested) : propKeys;
     let mappedStoreKeys = isArray ? storeKeys.map(getRootKeyIfNested) : storeKeys;
     let storeValues = store.getAll(mappedStoreKeys);
@@ -58,7 +72,7 @@ function subscribe(store, Component, mapping = null) {
     }
 
     componentDidMount() {
-      store.watch(storeKeys, this.updateToystoreMapping);
+      store.watch(getStoreKeys(), this.updateToystoreMapping);
     }
 
     componentWillUnmount() {
@@ -66,14 +80,15 @@ function subscribe(store, Component, mapping = null) {
     }
 
     updateToystoreMapping(toystoreMapping) {
+      let updatedMapping = getMappingForLocalPropNames();
+
       this.setState({
-        toystoreMapping: getMappingForLocalPropNames()
+        toystoreMapping: updatedMapping
       });
     }
 
     render() {
-      let renderMapping = getMappingForLocalPropNames();
-      let props = Object.assign({}, this.props, renderMapping, this.state.toystoreMapping);
+      let props = Object.assign({}, this.props, this.state.toystoreMapping);
 
       return React.createElement(Component, props, this.props.children);
     }
