@@ -72,7 +72,8 @@ function subscribe(store, Component, mapping = null) {
     }
 
     render() {
-      let props = Object.assign({}, this.props, this.state.toystoreMapping);
+      let renderMapping = getMappingForLocalPropNames();
+      let props = Object.assign({}, this.props, renderMapping, this.state.toystoreMapping);
 
       return React.createElement(Component, props, this.props.children);
     }

@@ -41,6 +41,18 @@ describe('subscribe', () => {
     expect(component.text()).toContain('"foo":"bar"');
   });
 
+  it('should render with the correct values when mounted AFTER a store set/update', () => {
+    TestComponent = subscribe(ExampleComponent, 'foo');
+
+    // Update store AFTER subscribe, but BEFORE render
+    store.set('foo', 'baz');
+
+    let component = mount(React.createElement(TestComponent, {}));
+
+    expect(component.text()).toContain('"foo":"baz"');
+    expect(renderCount).toBe(1);
+  });
+
   it('should watch for key changes with single string', () => {
     TestComponent = subscribe(ExampleComponent, 'foo');
     let component = mount(React.createElement(TestComponent, {}));
