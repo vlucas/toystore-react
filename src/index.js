@@ -1,7 +1,20 @@
 'use strict';
 
 const React = require('react');
-const zipObject = require('lodash.zipobject');
+
+/**
+ * Create object with provided arrays of keys and values
+ *
+ * @param {String[]} keys
+ * @param {Array} values
+ */
+function zipObject(keys, values) {
+  return keys.reduce(function(object, currentValue, currentIndex) {
+    object[currentValue] = values[currentIndex];
+
+    return object;
+  }, {});
+}
 
 /**
  * Subscribes a component to the store to re-render when specified store keys update
