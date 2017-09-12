@@ -79,6 +79,10 @@ function subscribe(store, Component, mapping = null) {
       store.unwatch(this.updateToystoreMapping);
     }
 
+    getOriginalComponent() {
+      return Component;
+    }
+
     updateToystoreMapping(toystoreMapping) {
       let updatedMapping = getMappingForLocalPropNames();
 
