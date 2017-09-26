@@ -93,7 +93,11 @@ function subscribe(store, Component, mapping = null) {
     }
 
     getOriginalComponent() {
-      return this.originalComponent;
+      return Component;
+    }
+    
+    getOriginalComponentRef() {
+      return this.originalComponent; 
     }
 
     updateToystoreMapping(toystoreMapping) {
