@@ -93,7 +93,7 @@ function subscribe(store, Component, mapping = null) {
     }
 
     getOriginalComponent() {
-      return Component;
+      return this.originalComponent;
     }
 
     updateToystoreMapping(toystoreMapping) {
@@ -105,7 +105,7 @@ function subscribe(store, Component, mapping = null) {
     }
 
     render() {
-      let props = Object.assign({}, this.props, this.state.toystoreMapping);
+      let props = Object.assign({}, this.props, this.state.toystoreMapping, {ref: node => this.originalComponent = node});
 
       return React.createElement(Component, props, this.props.children);
     }
