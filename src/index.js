@@ -95,9 +95,9 @@ function subscribe(store, Component, mapping = null) {
     getOriginalComponent() {
       return Component;
     }
-    
+
     getOriginalComponentRef() {
-      return this.originalComponent; 
+      return this.originalComponent;
     }
 
     updateToystoreMapping(toystoreMapping) {
