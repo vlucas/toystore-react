@@ -1,12 +1,14 @@
 {
   "name": "toystore-react",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "React bindings for toystore (central store of state)",
-  "main": "src/index.js",
+  "main": "es5/index.js",
   "scripts": {
+		"build": "npm run babel",
+    "babel": "./node_modules/babel-cli/bin/babel.js src/index.js --out-file es5/index.js",
     "test": "jest"
   },
-  "keywords": [],
+  "keywords": ["react", "store", "central store", "redux"],
   "author": "Vance Lucas <vance@vancelucas.com>",
   "license": {
     "type": "BSD-3-Clause"
@@ -20,6 +22,8 @@
     "toystore": "1.x"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
     "enzyme": "^2.9.1",
     "jest": "^20.0.4",
     "react": "^15.6.1",
