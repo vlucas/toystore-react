@@ -62,12 +62,31 @@ class MyComponent extends React.PureComponent {
 export default store.subscribe(MyComponent, { user_email: 'user.email' });
 ```
 
+### Update Priority
+
+Give a component a higher or lower priority to update by passing in an options object.
+
+```javascript
+const store = require('./mystore');
+
+class MyComponent extends React.PureComponent {
+  render() {
+    return <div>{this.props.user.email}</div>
+  }
+}
+
+// Where the magic happens
+export default store.subscribe(MyComponent, { user_email: 'user.email' }, { priority: 99999});
+```
+
+
+
 ## API
 
 The React binding has only a single function - `subscribe`, but it can accept
 many different ways of mapping store keys that you want to listen for.
 
-### subscribe(store, Component, mapping = null)
+### subscribe(store, Component, mapping = null, options = { priority: 0 })
 
 Subscribe works by wrapping your React component in a higher order component
 that watches the store for changes on the specified keys, then triggers a

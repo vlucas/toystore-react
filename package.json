@@ -4,11 +4,16 @@
   "description": "React bindings for toystore (central store of state)",
   "main": "es5/index.js",
   "scripts": {
-		"build": "npm run babel",
+    "build": "npm run babel",
     "babel": "./node_modules/babel-cli/bin/babel.js src/index.js --out-file es5/index.js",
     "test": "jest"
   },
-  "keywords": ["react", "store", "central store", "redux"],
+  "keywords": [
+    "react",
+    "store",
+    "central store",
+    "redux"
+  ],
   "author": "Vance Lucas <vance@vancelucas.com>",
   "license": {
     "type": "BSD-3-Clause"
