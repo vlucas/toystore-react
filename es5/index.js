@@ -30,9 +30,12 @@ function zipObject(keys, values) {
  * @param {Object} Toystore instance
  * @param {React.Component} Component - React component to subscribe/re-render
  * @param {String|Array|Object} mapping
+ * @param {Object} options Toystore watch options
+ * @param {Number} options.priority value used to determine the order watchers are called
  */
 function subscribe(store, Component) {
   var mapping = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  var options = arguments[3];
 
   var defaultMapping = void 0;
 
@@ -106,7 +109,7 @@ function subscribe(store, Component) {
     _createClass(ToystoreConnect, [{
       key: 'componentDidMount',
       value: function componentDidMount() {
-        store.watch(getStoreKeys(), this.updateToystoreMapping);
+        store.watch(getStoreKeys(), this.updateToystoreMapping, options);
       }
     }, {
       key: 'componentWillUnmount',
