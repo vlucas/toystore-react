@@ -25,7 +25,7 @@ let store = toystore.create({
 });
 
 // Use partial application to add the 'subscribe' method from toystore-react, bound to this store
-store.subscribe(Component, mapping) => toystoreReact.subscribe(store, Component, mapping);
+store.subscribe = (Component, mapping) => toystoreReact.subscribe(store, Component, mapping);
 
 module.exports = store;
 ```
