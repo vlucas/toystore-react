@@ -14,7 +14,7 @@ Create a new store instance with your initial store values:
 ```javascript
 // File: ./mystore.js
 const toystore = require('toystore');
-const toystoreReact = require('./mystore');
+const toystoreReact = require('toystore-react');
 
 let store = toystore.create({
   foo: 'bar',
