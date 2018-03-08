@@ -1,7 +1,9 @@
 # Toystore React Bindings
 
-Bidings to subscribe a React component to specific keys in Toystore.js so the
+Bindings to subscribe a React component to specific keys in Toystore.js so the
 React component will auto-update when the specified keys change.
+
+**NEW** v2.x works with React or any API-compatible project (Preact, Inferno, etc.)
 
 ## Installation
 
@@ -13,8 +15,9 @@ npm install toystore-react --save
 Create a new store instance with your initial store values:
 ```javascript
 // File: ./mystore.js
+const React = require('react');
 const toystore = require('toystore');
-const toystoreReact = require('toystore-react');
+const toystoreReact = require('toystore-react')(React); // Provide 'React', 'Preact', 'Inferno', etc. here
 
 let store = toystore.create({
   foo: 'bar',
@@ -30,7 +33,7 @@ store.subscribe = (Component, mapping) => toystoreReact.subscribe(store, Compone
 module.exports = store;
 ```
 
-### Subscrbe a React Component to the Entire Store
+### Subscribe a React Component to the Entire Store
 
 Update your component anytime any key in the store changes:
 

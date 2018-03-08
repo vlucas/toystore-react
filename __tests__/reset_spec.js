@@ -1,9 +1,9 @@
 'use strict';
 
 const { mount } = require('enzyme');
-const toystore = require('toystore');
-const toystoreReact = require('../src/index');
 const React = require('react');
+const toystore = require('toystore');
+const toystoreReact = require('../src/index')(React);
 
 let renderCount = 0;
 let storeDefaults = {

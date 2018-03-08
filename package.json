@@ -23,7 +23,6 @@
     "url": "http://github.com/vlucas/toystore-react"
   },
   "peerDependencies": {
-    "react": "15.x",
     "toystore": "1.x"
   },
   "devDependencies": {
