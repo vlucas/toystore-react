@@ -27,6 +27,14 @@ class ExampleComponent extends React.Component {
   }
 }
 
+function StatelessComponent(props) {
+  let propsJson = JSON.stringify(props);
+
+  renderCount++;
+
+  return React.createElement('div', {}, propsJson);
+}
+
 describe('subscribe', () => {
   beforeEach(() => {
     renderCount = 0;
@@ -130,5 +138,12 @@ describe('subscribe', () => {
 
     expect(component.text()).toContain('"user_email":"bar@baz.com"');
     expect(renderCount).toBe(2);
+  });
+
+  it('should support stateless function components', () => {
+    TestComponent = subscribe(StatelessComponent);
+    let component = mount(React.createElement(TestComponent, {}));
+
+    expect(component.text()).toContain('"foo":"bar"');
   });
 });

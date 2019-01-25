@@ -25,12 +25,12 @@ function createBinding(React) {
    * Subscribes a component to the store to re-render when specified store keys update
    *
    * @param {Object} Toystore instance
-   * @param {React.Component} Component - React component to subscribe/re-render
+   * @param {React.Component} OriginalComponent - React component to subscribe/re-render
    * @param {String|Array|Object} mapping
    * @param {Object} options Toystore watch options
    * @param {Number} options.priority value used to determine the order watchers are called
    */
-  function subscribe(store, Component, mapping = null, options) {
+  function subscribe(store, OriginalComponent, mapping = null, options) {
     let defaultMapping;
 
     if (mapping === null) {
@@ -103,7 +103,7 @@ function createBinding(React) {
       }
 
       getOriginalComponent() {
-        return Component;
+        return OriginalComponent;
       }
 
       getOriginalComponentRef() {
@@ -125,7 +125,7 @@ function createBinding(React) {
       render() {
         let props = Object.assign({}, this.props, this.state.toystoreMapping, {ref: node => this.originalComponent = node});
 
-        return createElement(Component, props, this.props.children);
+        return createElement(OriginalComponent, props, this.props.children);
       }
     }
 
