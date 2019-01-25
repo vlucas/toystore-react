@@ -34,12 +34,12 @@ function createBinding(React) {
    * Subscribes a component to the store to re-render when specified store keys update
    *
    * @param {Object} Toystore instance
-   * @param {React.Component} Component - React component to subscribe/re-render
+   * @param {React.Component} OriginalComponent - React component to subscribe/re-render
    * @param {String|Array|Object} mapping
    * @param {Object} options Toystore watch options
    * @param {Number} options.priority value used to determine the order watchers are called
    */
-  function subscribe(store, Component) {
+  function subscribe(store, OriginalComponent) {
     var mapping = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
     var options = arguments[3];
 
@@ -128,7 +128,7 @@ function createBinding(React) {
       }, {
         key: 'getOriginalComponent',
         value: function getOriginalComponent() {
-          return Component;
+          return OriginalComponent;
         }
       }, {
         key: 'getOriginalComponentRef',
@@ -157,7 +157,7 @@ function createBinding(React) {
               return _this2.originalComponent = node;
             } });
 
-          return createElement(Component, props, this.props.children);
+          return createElement(OriginalComponent, props, this.props.children);
         }
       }]);
 
