@@ -50,7 +50,7 @@ class MyComponent extends React.PureComponent {
 export default store.subscribe(MyComponent);
 ```
 
-### Subscrbe a React Component to Specific Keys in the Store
+### Subscribe a React Component to Specific Keys in the Store
 
 ```javascript
 const store = require('./mystore');
