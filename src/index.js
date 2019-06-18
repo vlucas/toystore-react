@@ -106,10 +106,6 @@ function createBinding(React) {
         return OriginalComponent;
       }
 
-      getOriginalComponentRef() {
-        return this.originalComponent;
-      }
-
       updateToystoreMapping(toystoreMapping) {
         if (!this._isMounted) {
           return;
@@ -123,7 +119,7 @@ function createBinding(React) {
       }
 
       render() {
-        let props = Object.assign({}, this.props, this.state.toystoreMapping, {ref: node => this.originalComponent = node});
+        let props = Object.assign({}, this.props, this.state.toystoreMapping);
 
         return createElement(OriginalComponent, props, this.props.children);
       }

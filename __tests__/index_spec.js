@@ -1,9 +1,10 @@
-'use strict';
-
-const { mount } = require('enzyme');
+import { configure, mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 const React = require('react');
 const toystore = require('toystore');
 const toystoreReact = require('../src/index')(React);
+
+configure({ adapter: new Adapter() });
 
 let renderCount = 0;
 let store;
